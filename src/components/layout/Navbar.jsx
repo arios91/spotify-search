@@ -8,7 +8,7 @@ function Navbar() {
                 <div className="flex-none pr-2 mx-2">
                     <FaSpotify className='inline pr-2 brand-icon'/>
                     <Link to='/' className='font-bold align-middle brand'>
-                        Spotify Autocomplete
+                        Spotify Search
                     </Link>
                 </div>
                 <div className="flex-1 px-2 mx-2">

@@ -1,7 +1,17 @@
 .main-wrapper{
-    height: 100vh;
+    min-height: 100vh;
     background-color: #3d4451;
     color: #fffffe;
+}
+
+.row{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.relative{
+    position: relative;
+    border-radius: 2rem;
 }
 
 .navbar{
@@ -41,4 +51,61 @@
     color: #fffffe;
     fill: currentColor;
     background-color: rgb(55 65 81);
+}
+
+.about{
+    font-size: 1.4rem;
+}
+
+.searchInput{
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    font-size: 1.5rem;
+    height: 4rem;
+    border: none;
+    text-align: center;
+}
+
+.searchButton{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 9rem;
+    color: #fffffe;
+    font-size: 1.125rem;
+    background-color: #202529;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    height: 100%;
+}
+
+.rounded-full{
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.item-image{
+    width: 3.5rem;
+    height: 3.5rem;
+}
+
+.grid-title{
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.result-section{
+    margin-bottom: 3rem;
+}
+
+.result-item{
+    height: 4rem;
+    text-align: left;
+    border-bottom: 1px solid #999;
+    border-radius: .75rem
+}
+
+.icon-class{
+    color:white;
+    font-size: 1.3rem;
 }
