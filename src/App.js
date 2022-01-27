@@ -6,6 +6,12 @@ import About from './pages/About';
 import NotFound from './pages/NotFound';
 import { SpotifyReducer } from './components/context/spotify/SpotifyContext';
 
+/**
+ * Starting point of entire application
+ * Navbar and Footer are here since they don't change along with the pages
+ * Any new url routes need to be added here under the <Routes> tag
+ */
+
 
 function App() {
   return (
@@ -15,7 +21,6 @@ function App() {
             <Navbar></Navbar>
             <main className="container mx-auto px-3 pb-12">
             <Routes>
-
                 <Route path='/' element={<Home/>}/>
                 <Route path='/about' element={<About/>}/>
                 <Route path='/*' element={<NotFound/>}/>
