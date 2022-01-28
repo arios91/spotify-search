@@ -79,9 +79,42 @@
     height: 100%;
 }
 
+.card{
+    background: none !important;
+    border-radius: 1rem;
+    margin-bottom: .75rem;
+}
+
+.card-body{
+    display: flex;
+    flex-direction: row;
+    padding: 0.5rem 1rem;
+    align-items: center;
+}
+
 .rounded-full{
     border-radius: 9999px;
     overflow: hidden;
+    width: 3.5rem;
+    height: 3.5rem;
+}
+
+.card-title{
+    margin-left: 2rem;
+    margin-bottom: 0;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.card-title-name{
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    margin-bottom: 0.25rem;
+    cursor: pointer;
 }
 
 .item-image{
@@ -105,7 +138,39 @@
     border-radius: .75rem
 }
 
+.avatar{
+    display: inline-flex;
+}
+
+.avatar-image{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+
+}
+
 .icon-class{
     color:white;
     font-size: 1.3rem;
+}
+
+.artist-modal{
+    min-height: 33vh;
+    color: black
+}
+
+.modal-title{
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.5), transparent );
+    border-radius: 1rem;
+    padding-left: 2rem;
+    color: #fffffe;
+    margin-bottom: 2rem;
+}
+
+.modal-card-container{
+    flex: none;
+}
+.modal-card{
+    color: #fffffe;
+    border-color: #808080
 }

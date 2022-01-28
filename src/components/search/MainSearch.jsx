@@ -36,6 +36,7 @@ function MainSearch() {
                         </form>
                     </div>
                 </div>
+            <div className="col-1 col-md-2 col-lg-2"></div>
         </div>
     )
 }

@@ -24,7 +24,7 @@ function ResultSection({header, collection}) {
         <div className="col-12 col-md-4 col-lg-4 result-section">
             <div className="col-12 row grid-title">
                 <div className="col-2">
-                    <button onClick={handlePrev} className="btn btn-outline-secondary nav-button" disabled={collection.offset == 0}>
+                    <button onClick={handlePrev} className="btn btn-outline-secondary nav-button" disabled={!collection.previous}>
                         <FaAngleDoubleLeft className='icon-class'/>
                     </button>
                 </div>
@@ -32,7 +32,7 @@ function ResultSection({header, collection}) {
                     {header}
                 </div>
                 <div className="col-2">
-                    <button onClick={handleNext} className="btn btn-outline-secondary nav-button">
+                    <button onClick={handleNext} className="btn btn-outline-secondary nav-button" disabled={!collection.next}>
                         <FaAngleDoubleRight className='icon-class'/>
                     </button>
                 </div>

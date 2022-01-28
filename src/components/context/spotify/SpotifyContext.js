@@ -16,6 +16,7 @@ export const SpotifyReducer = ({children}) => {
     const initialState = {
         spotifyToken: '',
         results: {},
+        currentArtistAlbums: {},
         pastResults: {},
         isLoading: false
     }
@@ -78,6 +79,23 @@ export const SpotifyReducer = ({children}) => {
         */
     }
 
+    const getArtistAlbums = async (artistId) => {
+        const params = new URLSearchParams({
+            limit: 5
+        })
+
+        const res = await spotify.get(`/artists/${artistId}/albums?${params}`, {headers:{
+            'Content-type' : 'applicaiton/x-www-form-urlencoded',
+            'Authorization' : 'Bearer ' + state.spotifyToken
+        }});
+
+        console.log(res.data);
+        dispatch({
+            type: 'SET_ARTIST_ALBUMS',
+            payload: res.data
+        })
+    }
+
     const pageChange = async (nextUrl, param) => {
         console.log(param);
         let {results} = state;
@@ -90,7 +108,6 @@ export const SpotifyReducer = ({children}) => {
             'Authorization' : 'Bearer ' + state.spotifyToken
         }});
 
-        console.log(res.data)
 
         if(param === 'Artists'){
             newArtists = res.data.artists;
@@ -110,6 +127,21 @@ export const SpotifyReducer = ({children}) => {
         })
     }
 
+    const albumChange = async (nextUrl) => {
+        const res = await axios.get(nextUrl, {headers:{
+            'Content-type' : 'applicaiton/x-www-form-urlencoded',
+            'Authorization' : 'Bearer ' + state.spotifyToken
+        }});
+
+        console.log(res.data);
+        dispatch({
+            type: 'SET_ARTIST_ALBUMS',
+            payload: res.data
+        })
+    }
+
+    
+
     
 
     return <SpotifyContext.Provider value={{
@@ -117,7 +149,9 @@ export const SpotifyReducer = ({children}) => {
         getToken,
         searchSpotify,
         clearResults,
-        pageChange
+        pageChange,
+        getArtistAlbums,
+        albumChange
     }}>
         {children}
     </SpotifyContext.Provider>
