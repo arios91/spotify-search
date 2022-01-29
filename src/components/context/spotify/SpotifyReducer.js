@@ -18,6 +18,12 @@ const spotifyReducer = (state, action) => {
                 currentArtistAlbums: action.payload,
                 isLoading: false
             }
+        case 'SET_ALBUM_TRACKS':
+            return{
+                ...state,
+                currentAlbumTracks: action.payload,
+                isLoading: false
+            }
         case 'SET_LOADING':
             return{
                 ...state,

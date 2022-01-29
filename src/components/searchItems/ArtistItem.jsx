@@ -49,13 +49,13 @@ function ArtistItem({artist}) {
                     </div>
                 </div>
                 <div className="card-title">
-                    <p className="card-title-name" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={handleShow}>{artist.name}</p>
+                    <p className="card-title-name" onClick={handleShow}>{artist.name}</p>
                 </div>
             </div>
 
 
             <Modal show={show} onHide={handleClose} centered >
-                <Modal.Body className='artist-modal' style={modalBackground}>
+                <Modal.Body className='item-modal' style={modalBackground}>
                     <Container>
                         <Row>
                             <Col xs={12} className='modal-title'>

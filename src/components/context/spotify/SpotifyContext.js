@@ -55,7 +55,7 @@ export const SpotifyReducer = ({children}) => {
         })
 
         const res = await spotify.get(`/search?${params}`, {headers:{
-            'Content-type' : 'applicaiton/x-www-form-urlencoded',
+            'Content-type' : 'application/x-www-form-urlencoded',
             'Authorization' : 'Bearer ' + state.spotifyToken
         }});
 
@@ -85,7 +85,7 @@ export const SpotifyReducer = ({children}) => {
         })
 
         const res = await spotify.get(`/artists/${artistId}/albums?${params}`, {headers:{
-            'Content-type' : 'applicaiton/x-www-form-urlencoded',
+            'Content-type' : 'application/x-www-form-urlencoded',
             'Authorization' : 'Bearer ' + state.spotifyToken
         }});
 
@@ -96,6 +96,24 @@ export const SpotifyReducer = ({children}) => {
         })
     }
 
+    const getAlbumTracks = async (albumId) => {
+        const params = new URLSearchParams({
+            limit: 5
+        })
+
+        const res = await spotify.get(`/albums/${albumId}/tracks?${params}`, {headers:{
+            'Content-type' : 'application/x-www-form-urlencoded',
+            'Authorization' : 'Bearer ' + state.spotifyToken
+        }});
+        console.log(res.data);
+
+        dispatch({
+            type: 'SET_ALBUM_TRACKS',
+            payload: res.data
+        })
+
+    }
+
     const pageChange = async (nextUrl, param) => {
         console.log(param);
         let {results} = state;
@@ -104,7 +122,7 @@ export const SpotifyReducer = ({children}) => {
         let newTracks = results.tracks;
 
         const res = await axios.get(nextUrl, {headers:{
-            'Content-type' : 'applicaiton/x-www-form-urlencoded',
+            'Content-type' : 'application/x-www-form-urlencoded',
             'Authorization' : 'Bearer ' + state.spotifyToken
         }});
 
@@ -129,7 +147,7 @@ export const SpotifyReducer = ({children}) => {
 
     const albumChange = async (nextUrl) => {
         const res = await axios.get(nextUrl, {headers:{
-            'Content-type' : 'applicaiton/x-www-form-urlencoded',
+            'Content-type' : 'application/x-www-form-urlencoded',
             'Authorization' : 'Bearer ' + state.spotifyToken
         }});
 
@@ -151,7 +169,8 @@ export const SpotifyReducer = ({children}) => {
         clearResults,
         pageChange,
         getArtistAlbums,
-        albumChange
+        albumChange,
+        getAlbumTracks
     }}>
         {children}
     </SpotifyContext.Provider>
