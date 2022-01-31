@@ -159,6 +159,10 @@
     color: black
 }
 
+.track-modal{
+    min-height: 66vh;
+}
+
 .modal-title{
     background: linear-gradient(45deg, rgba(0, 0, 0, 0.5), transparent );
     border-radius: 1rem;
@@ -173,4 +177,14 @@
 .modal-card{
     color: #fffffe;
     border-color: #808080
+}
+
+.track-title{
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+.track-details{
+    white-space: pre-line;
+    padding-top: 1rem;
 }

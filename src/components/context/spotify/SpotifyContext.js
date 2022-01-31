@@ -17,6 +17,7 @@ export const SpotifyReducer = ({children}) => {
         spotifyToken: '',
         results: {},
         currentArtistAlbums: {},
+        currentAlbumTracks: {},
         pastResults: {},
         isLoading: false
     }
@@ -98,7 +99,7 @@ export const SpotifyReducer = ({children}) => {
 
     const getAlbumTracks = async (albumId) => {
         const params = new URLSearchParams({
-            limit: 5
+            limit: 7
         })
 
         const res = await spotify.get(`/albums/${albumId}/tracks?${params}`, {headers:{
@@ -158,6 +159,19 @@ export const SpotifyReducer = ({children}) => {
         })
     }
 
+
+    const tracksChange = async (nextUrl) => {
+        const res = await axios.get(nextUrl, {headers:{
+            'Content-type' : 'application/x-www-form-urlencoded',
+            'Authorization' : 'Bearer ' + state.spotifyToken
+        }});
+
+        dispatch({
+            type: 'SET_ALBUM_TRACKS',
+            payload: res.data
+        })
+    }
+
     
 
     
@@ -170,7 +184,8 @@ export const SpotifyReducer = ({children}) => {
         pageChange,
         getArtistAlbums,
         albumChange,
-        getAlbumTracks
+        getAlbumTracks,
+        tracksChange
     }}>
         {children}
     </SpotifyContext.Provider>
