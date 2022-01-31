@@ -2,6 +2,10 @@ import { createContext, useReducer } from "react";
 import axios from "axios";
 import spotifyReducer from "./SpotifyReducer";
 
+/*
+    Basic Context setup for making all API calls
+*/
+
 const SpotifyContext = createContext();
 
 const spotify = axios.create({
@@ -24,9 +28,14 @@ export const SpotifyReducer = ({children}) => {
 
     const [state, dispatch] = useReducer(spotifyReducer, initialState);
 
-    /* The following actions will make all of the API calls and set them to state */
+    /*
+        The following actions will make all of the API calls and set them to state
+    */
 
-    // All of the API calls require a token which is set with this initial function
+
+    /*
+        All of the API calls require a token which is set with this initial function
+    */
     const getToken = async() => {
         let tokenRes = await axios.post('https://accounts.spotify.com/api/token', 'grant_type=client_credentials', {headers:{
             'Content-Type' : 'application/x-www-form-urlencoded',
@@ -39,6 +48,10 @@ export const SpotifyReducer = ({children}) => {
         })
     }
 
+
+    /*
+        Function to clear search results from state
+    */
     const clearResults = () => {
         dispatch({
             type: 'SET_RESULTS',
@@ -46,9 +59,13 @@ export const SpotifyReducer = ({children}) => {
         })
     }
 
-    // General search function
+
+    /*
+        Main function that searches spotify for Tracks, Artists, and Albums
+        Uses live user input from search bar
+        Will use a map to save previous search terms to avoid unnecessary API calls
+    */
     const searchSpotify = async (searchTerm) => {
-        console.log(`Searching: ${searchTerm}`)
         const params = new URLSearchParams({
             q: searchTerm,
             type: ["artist", "album", "track"],
@@ -60,8 +77,8 @@ export const SpotifyReducer = ({children}) => {
             'Authorization' : 'Bearer ' + state.spotifyToken
         }});
 
-        let results = res.data
-        console.log(results);
+        let results = res.data;
+
         dispatch({
             type: 'SET_RESULTS',
             payload: results
@@ -69,17 +86,15 @@ export const SpotifyReducer = ({children}) => {
 
         // TO-DO - save results to map to save on calls
         /*
-        let pastResult = {
-            searchTerm,
-            results
-        }
 
-        dispatch({
-            type:
-        })
         */
     }
 
+
+    /*
+        Function to grab artist albums using album ID
+        This is called when a user click on an artist name
+    */
     const getArtistAlbums = async (artistId) => {
         const params = new URLSearchParams({
             limit: 5
@@ -90,13 +105,17 @@ export const SpotifyReducer = ({children}) => {
             'Authorization' : 'Bearer ' + state.spotifyToken
         }});
 
-        console.log(res.data);
         dispatch({
             type: 'SET_ARTIST_ALBUMS',
             payload: res.data
         })
     }
 
+
+    /*
+        Function to grab album tracks using album id
+        This is called when a user click on an album name
+    */
     const getAlbumTracks = async (albumId) => {
         const params = new URLSearchParams({
             limit: 7
@@ -106,7 +125,6 @@ export const SpotifyReducer = ({children}) => {
             'Content-type' : 'application/x-www-form-urlencoded',
             'Authorization' : 'Bearer ' + state.spotifyToken
         }});
-        console.log(res.data);
 
         dispatch({
             type: 'SET_ALBUM_TRACKS',
@@ -115,8 +133,13 @@ export const SpotifyReducer = ({children}) => {
 
     }
 
+
+    /*
+        Function to grab next set of results when a user clicks on previous/next page buttons
+        Results are limited to a specified number in main search function
+        Copies over current results to a new object and then overrides either artists, albums, or tracks with new results
+    */
     const pageChange = async (nextUrl, param) => {
-        console.log(param);
         let {results} = state;
         let newArtists = results.artists;
         let newAlbums = results.albums;
@@ -146,13 +169,16 @@ export const SpotifyReducer = ({children}) => {
         })
     }
 
+
+    /*
+        Function to grab next set of albums in the artist modal
+    */
     const albumChange = async (nextUrl) => {
         const res = await axios.get(nextUrl, {headers:{
             'Content-type' : 'application/x-www-form-urlencoded',
             'Authorization' : 'Bearer ' + state.spotifyToken
         }});
 
-        console.log(res.data);
         dispatch({
             type: 'SET_ARTIST_ALBUMS',
             payload: res.data
@@ -160,6 +186,9 @@ export const SpotifyReducer = ({children}) => {
     }
 
 
+    /*
+        Function to grab next set of tracks in the album modal
+    */
     const tracksChange = async (nextUrl) => {
         const res = await axios.get(nextUrl, {headers:{
             'Content-type' : 'application/x-www-form-urlencoded',
@@ -190,5 +219,6 @@ export const SpotifyReducer = ({children}) => {
         {children}
     </SpotifyContext.Provider>
 }
+
 
 export default SpotifyContext

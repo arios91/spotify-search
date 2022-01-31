@@ -4,6 +4,13 @@ import music from '../assets/music.png'
 import React from 'react'
 import {Modal, Container, Row, Col} from 'react-bootstrap';
 
+/*
+    Main container to display indiviual track items from collection of search results
+    Handles user clicking on an item to display Track Modals
+    Also calls API to gather previous/next results
+*/
+
+
 function TrackItem({track}) {
     let images = track.album.images;
     const [show, setShow] = useState(false);

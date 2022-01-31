@@ -6,6 +6,12 @@ import {Modal, Container, Row, Col} from 'react-bootstrap';
 import SpotifyContext from '../context/spotify/SpotifyContext';
 import {FaAngleDoubleLeft, FaAngleDoubleRight} from 'react-icons/fa'
 
+/*
+    Main container to display indiviual album items from collection of search results
+    Handles user clicking on an item to display Album Modals
+    Also calls API to gather previous/next results
+*/
+
 
 function AlbumItem({album}) {
     let images = album.images;

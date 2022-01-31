@@ -2,6 +2,11 @@ import {useContext} from 'react'
 import SpotifyContext from "../context/spotify/SpotifyContext";
 import ResultSection from './ResultSection';
 
+/*
+    Main container for search results provided by the API
+    There is an individual section for Artists, Albums, And Tracks
+*/
+
 function SearchResults() {
     const {results} = useContext(SpotifyContext)
     let {artists, albums, tracks} = results;

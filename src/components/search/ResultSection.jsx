@@ -6,6 +6,13 @@ import TrackItem from '../searchItems/TrackItem';
 import SpotifyContext from "../context/spotify/SpotifyContext";
 import {FaAngleDoubleLeft, FaAngleDoubleRight} from 'react-icons/fa'
 
+/*
+    Container for search results, takes in a header and a collection of items (artists, albums, tracks)
+    Handles user navigating to previous and next search results
+    It creates a user,album,track Item depending on the collection passed
+    Although the xItems are very similar, I created a unique one for each collection for easier customization
+*/
+
 function ResultSection({header, collection}) {
     const {pageChange} = useContext(SpotifyContext)
 
@@ -49,6 +56,7 @@ function ResultSection({header, collection}) {
     )
 
 }
+
 ResultSection.propTypes = {
     header: PropTypes.string,
     collection: PropTypes.object.isRequired

@@ -1,6 +1,11 @@
 import {useContext, useEffect} from 'react'
 import SpotifyContext from "../context/spotify/SpotifyContext";
 
+/*
+    Main Search container, 
+    this contains the main search input box and calls the context provider to make the API calls.
+*/
+
 function MainSearch() {
     const {searchSpotify, clearResults, getToken, spotifyToken} = useContext(SpotifyContext)
 

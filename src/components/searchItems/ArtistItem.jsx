@@ -6,6 +6,12 @@ import React from 'react'
 import {Modal, Container, Row, Col} from 'react-bootstrap';
 import {FaAngleDoubleLeft, FaAngleDoubleRight} from 'react-icons/fa'
 
+/*
+    Main container to display indiviual artist items from collection of search results
+    Handles user clicking on an item to display Artist Modals
+    Also calls API to gather previous/next results
+*/
+
 function ArtistItem({artist}) {
     let images = artist.images;
     const {getArtistAlbums, currentArtistAlbums, albumChange} = useContext(SpotifyContext)
