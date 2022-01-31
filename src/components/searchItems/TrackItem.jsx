@@ -52,7 +52,7 @@ function TrackItem({track}) {
         }
         let album = 'Album Information Unavailable';
         if(trackAlbum){
-            album = `${trackAlbum.name}\n${trackAlbum.release_date}`
+            album = `${trackAlbum.name} - ${trackAlbum.release_date}`
         }
 
         return `${artist} \n${album} \n${formatTime()}`;
